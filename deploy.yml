@@ -1,0 +1,11 @@
+---
+- hosts: web123
+
+  vars_prompt:
+    - name: "application"
+      prompt: "Enter application"
+      private: no
+
+  tasks:
+    - name: "up to FTP"
+      command: "ls -ld /var/www/html/{{application}}/"

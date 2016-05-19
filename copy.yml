@@ -1,0 +1,7 @@
+---
+- hosts: JBossProdEportal2
+  tasks:
+    - name: imp newecm
+      command: keytool -import -trustcacerts -alias newecm -file /tmp/newecm.crt -keystore /var/eportal/appconf/cacerts -storepass changeit
+    - name: imp nicusastar
+      command: keytool -import -trustcacerts -alias nicusastar -file /tmp/nicusastar.crt -keystore /var/eportal/appconf/cacerts -storepass changeit

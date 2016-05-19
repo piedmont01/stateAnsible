@@ -1,0 +1,25 @@
+---
+- hosts: web
+  vars_prompt:
+    - name: "site"
+      prompt: "Enter application"
+      private: no
+
+  tasks:
+  - name: "append"
+    blockinfile:
+      dest: /tmp/xxxyyy
+      backup: yes
+      insertafter:
+      block: |
+        <VirtualHost *:*>
+          ServerAdmin brian.thomas@tn.gov
+          DocumentRoot /var/www/html/prod/{{site}}
+          ServerName {{site}}
+          ServerAlias www.{{site}}
+        </VirtualHost>
+  - name: "replace"
+    lineinfile: 
+      dest=/tmp/xxxyyy regexp=^# line=
+
+ 

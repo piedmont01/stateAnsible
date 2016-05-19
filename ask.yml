@@ -1,0 +1,17 @@
+---
+- hosts: ag03sdcla00801.dcsouth.tenn
+
+  vars_prompt:
+    - name: "application"
+      prompt: "Enter application"
+      private: no
+
+  tasks:
+    - name: "copy log file"
+      fetch: dest=/tmp src=/var/log/jbossas/eportalhost/servers/test-{{application}}-server/server.log
+
+    - name: "up to FTP"
+      copy: src=/tmp/ag03sdcla00801.dcsouth.tenn/var/log/jbossas/eportalhost/servers/test-ETAX-server/server.log dest=
+
+
+    

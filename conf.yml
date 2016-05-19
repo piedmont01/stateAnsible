@@ -1,0 +1,7 @@
+---
+- hosts: ApacheProd
+  become: yes
+  tasks:
+    - name: fetch httpd.conf
+      fetch: dest=tmp/{{ansible_hostname}}/ports.conf src=/etc/httpd/conf/httpd.conf flat=yes
+

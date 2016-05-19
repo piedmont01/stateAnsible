@@ -1,0 +1,11 @@
+---
+  - hosts: ftpserver
+    vars:
+      eportal_prod_home: "/eportal/prod/APP"
+    become: true
+    tasks:
+    - fetch: src="{{ eportal_prod_home }}/{{ file }}" dest="/tmp/{{ file }}" flat=yes validate_checksum=yes
+  - hosts: myAnsible
+    become: true
+    tasks:
+    - unarchive: src="/tmp/{{ file }}" dest="/tmp/" owner=jboss group=jboss copy=no

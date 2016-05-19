@@ -1,0 +1,13 @@
+---
+- hosts: web
+  become: true
+  tasks:
+   - name: install web components
+     yum: name={{item}} state=present update_cache=yes
+     with_items:
+        - httpd
+        - mod_wsgi
+        - python-wsgiproxy
+        - python-virtinst
+   - name: ensure httpd started
+     service: name=httpd state=started enabled=yes

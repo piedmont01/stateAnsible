@@ -1,0 +1,4 @@
+---
+  - hosts: JBossProdEportal2
+    tasks:
+      - command: hostname
