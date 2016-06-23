@@ -1,25 +1,26 @@
 ---
-  - hosts: lb
+# Bring stack down
+  - hosts: ansibleLB
     become: true
     tasks:
       - service: name:nginx state=stopped
 
-  - hosts: web
+  - hosts: ansibleWEB
     become: true
     tasks: 
-      - service: name=httpd state=stopped
+      - service: name=apache2 state=stopped
 
-  - hosts: db
+  - hosts: ansibleDB
     become: true
     tasks: 
       -service: name=mysqld state=restarted
 
-  - hosts: web
+  - hosts: ansibleWEB
     become: true
     tasks:
-      - service: name=httpd state=started
+      - service: name=apache2 state=started
   
-  - hosts: lb
+  - hosts: ansibleLB
     become: true
     tasks:
       - service: name=nginx state=started

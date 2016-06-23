@@ -1,10 +1,9 @@
 ---
-- hosts: lb
+- hosts: ansibleLB
   become: true
   tasks:
-   - name: repos
-     copy: src=/tmp/nginx.repo dest=/etc/yum.repos.d/nginx.repo
    - name: install nginx
-     yum: name=nginx state=present update_cache=yes
+     apt: name=nginx state=present update_cache=yes
+
    - name: ensure nginx started
      service: name=nginx state=started enabled=yes
