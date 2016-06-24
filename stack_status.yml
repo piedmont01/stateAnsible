@@ -1,0 +1,19 @@
+---
+- hosts: ansibleLB
+  become: true
+  tasks:
+    - name: verify nginx service
+      command: service nginx status
+
+- hosts: ansibleWEB
+  become: true
+  tasks:
+    - name: verify apache2 service
+      command: service apache2 status
+
+- hosts: ansibleDB
+  become: true
+  tasks:
+    - name: verify databse service
+      command: service mysql status
+    
