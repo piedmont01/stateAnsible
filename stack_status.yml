@@ -5,11 +5,17 @@
     - name: verify nginx service
       command: service nginx status
 
+    - name: verify nginx is listening on port 80
+      wait_for: port=80 timeout=1
+
 - hosts: ansibleWEB
   become: true
   tasks:
     - name: verify apache2 service
       command: service apache2 status
+
+    - name: verify apache is listening on port 80
+      wait_for: port=80 timeout=1
 
 - hosts: ansibleDB
   become: true
@@ -17,3 +23,5 @@
     - name: verify databse service
       command: service mysql status
     
+    - name: verify mysql is listening on 3306
+      wait_for: port=3306 timeout=1
